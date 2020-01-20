@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lookaround/RandomWords.dart';
+import 'package:lookaround/ui/Login.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,7 +12,13 @@ class MyApp extends StatelessWidget {
         // Add the 3 lines from here...
         primaryColor: Colors.white,
       ), // ... to here.
-      home: RandomWords(),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Job Seeker"),
+        ),
+        body: Login(),
+      ),
+      
     );
   }
 }
