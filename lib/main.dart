@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lookaround/ui/Brand.dart';
-import 'package:lookaround/ui/JobsList.dart';
+import 'package:lookaround/ui/UserList.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,7 +16,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text("Job Seeker"),
         ),
-        body: Brand() ,
+        body: UsersList() ,
       ),
       
     );

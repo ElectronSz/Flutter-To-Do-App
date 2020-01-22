@@ -25,7 +25,7 @@ class JobsList extends StatelessWidget {
 
   Future<List<Job>> _fetchJobs() async {
 
-    final jobsListAPIUrl = 'https://mock-json-service.glitch.me/';
+    final jobsListAPIUrl = 'http://956e0d45.ngrok.io/v1/user/';
     final response = await http.get(jobsListAPIUrl);
 
     if (response.statusCode == 200) {
