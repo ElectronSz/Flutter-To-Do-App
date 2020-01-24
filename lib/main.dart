@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lookaround/auth/RegisterForm.dart';
 import 'package:lookaround/providers/AuthProvider.dart';
+import 'package:lookaround/providers/DataProvider.dart';
 import 'package:lookaround/providers/UserProvider.dart';
 import 'package:provider/provider.dart';
 
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => UserProvider()),
         ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => DataProvider()),
       ],
       child: MaterialApp(
         title: 'Startup Name Generator',
@@ -29,11 +31,3 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// MultiProvider(
-//   providers: [
-//     Provider<Something>(create: (_) => Something()),
-//     Provider<SomethingElse>(create: (_) => SomethingElse()),
-//     Provider<AnotherThing>(create: (_) => AnotherThing()),
-//   ],
-//   child: someWidget,
-// )

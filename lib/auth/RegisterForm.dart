@@ -1,8 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lookaround/widgets/CustomIcons.dart';
 import 'package:lookaround/widgets/SocialIcons.dart';
-
 
 class SignUpForm extends StatefulWidget {
   SignUpForm({Key key}) : super(key: key);
@@ -12,7 +13,10 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
+  TextEditingController _phoneControler = new TextEditingController();
+  TextEditingController _nameControler = new TextEditingController();
 
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Widget horizontalLine() => Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.0),
@@ -53,13 +57,12 @@ class _SignUpFormState extends State<SignUpForm> {
               padding: EdgeInsets.only(left: 28.0, right: 28.0, top: 60.0),
               child: Column(
                 children: <Widget>[
-                  
                   SizedBox(
-                    height: ScreenUtil.getInstance().setHeight(210),
+                    height: ScreenUtil.getInstance().setHeight(260),
                   ),
                   Container(
                     width: double.infinity,
-                    height: ScreenUtil.getInstance().setHeight(630),
+                    height: ScreenUtil.getInstance().setHeight(550),
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(8.0),
@@ -92,8 +95,8 @@ class _SignUpFormState extends State<SignUpForm> {
                                   fontFamily: "Poppins-Medium",
                                   fontSize:
                                       ScreenUtil.getInstance().setSp(26))),
-                                      
                           TextField(
+                            controller: _phoneControler,
                             decoration: InputDecoration(
                                 hintText: "phone",
                                 hintStyle: TextStyle(
@@ -102,38 +105,21 @@ class _SignUpFormState extends State<SignUpForm> {
                           SizedBox(
                             height: ScreenUtil.getInstance().setHeight(30),
                           ),
-                          Text("Username",
+                          Text("Full Name",
                               style: TextStyle(
                                   fontFamily: "Poppins-Medium",
                                   fontSize:
                                       ScreenUtil.getInstance().setSp(26))),
-                                      
                           TextField(
+                            controller: _nameControler,
                             decoration: InputDecoration(
-                                hintText: "username",
+                                hintText: "name",
                                 hintStyle: TextStyle(
                                     color: Colors.grey, fontSize: 12.0)),
                           ),
                           SizedBox(
                             height: ScreenUtil.getInstance().setHeight(30),
                           ),
-                          Text("Password",
-                              style: TextStyle(
-                                  fontFamily: "Poppins-Medium",
-                                  fontSize:
-                                      ScreenUtil.getInstance().setSp(26))),
-                          TextField(
-                            obscureText: true,
-                            decoration: InputDecoration(
-                                hintText: "password",
-                                hintStyle: TextStyle(
-                                    color: Colors.grey, fontSize: 12.0),
-                                    ),
-                          ),
-                          SizedBox(
-                            height: ScreenUtil.getInstance().setHeight(35),
-                          ),
-                          
                         ],
                       ),
                     ),
@@ -168,7 +154,9 @@ class _SignUpFormState extends State<SignUpForm> {
                           child: Material(
                             color: Colors.transparent,
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                _signUp();
+                              },
                               child: Center(
                                 child: Text("Sign Up",
                                     style: TextStyle(
@@ -246,5 +234,17 @@ class _SignUpFormState extends State<SignUpForm> {
         ],
       ),
     );
+  }
+
+  Future<void> _signUp() {
+    print(_phoneControler.text + " " + _nameControler.text);
+
+    _auth.createUserWithEmailAndPassword(
+        email: "lwazi@gmail.com", password: "DLaminilqn2");
+
+ Firestore.instance.collection("users").add({
+   'data': "Muki"
+ });
+    return null;
   }
 }
